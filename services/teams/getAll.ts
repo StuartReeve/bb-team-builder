@@ -5,6 +5,7 @@ export const getTeams = async (): Promise<Team[]> => {
 	const supabaseTeams = await supabase
 		.from<SupabaseTeam>("team")
 		.select("*, team_categories:team_category(*), team_player_assignment(*, player(*))")
+		.order("tier")
 		.order("name");
 
 	const teams = supabaseTeams.data?.map((st) => {
