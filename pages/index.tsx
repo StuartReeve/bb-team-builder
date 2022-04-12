@@ -20,10 +20,10 @@ const Home: NextPage<IHomeProps> = ({ teams }) => {
 		filteredRaces: [],
 	});
 	const categoryList = useMemo(() => {
-		return Array.from(new Set(teams.map((t) => t.team_categories.map((c) => c.category)).flat()));
+		return Array.from(new Set(teams.map((t) => t.team_categories.map((c) => c.category)).flat())).sort();
 	}, [teams]);
 	const raceList = useMemo(() => {
-		return Array.from(new Set(teams.map((t) => t.players.map((p) => p.race)).flat()));
+		return Array.from(new Set(teams.map((t) => t.players.map((p) => p.race)).flat())).sort();
 	}, [teams]);
 
 	const { filteredTeams } = useFilterTeams(teams, filterOptions);
