@@ -3,6 +3,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Collapse, Flex, Heading, Tag, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import PlayerList from "./PlayerList";
+import RetiredBanner from "./retiredBanner";
 import TextSection from "./TextSection";
 
 interface ITeamItemProps {
@@ -71,6 +72,7 @@ const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
 			</Flex>
 			<Collapse in={isOpen} animateOpacity>
 				<Box p={8}>
+					{team.roster_type === "Retired" && <RetiredBanner />}
 					<PlayerList players={team.players} />
 					<TextSection
 						heading="Additional Composition Rules"

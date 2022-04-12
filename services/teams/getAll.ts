@@ -4,7 +4,8 @@ import { supabase } from "@/utils/supabaseClient";
 export const getTeams = async (): Promise<Team[]> => {
 	const supabaseTeams = await supabase
 		.from<SupabaseTeam>("team")
-		.select("*, team_categories:team_category(*), team_player_assignment(*, player(*))");
+		.select("*, team_categories:team_category(*), team_player_assignment(*, player(*))")
+		.order("name");
 
 	const teams = supabaseTeams.data?.map((st) => {
 		st.players = st.team_player_assignment.map((tpa) => {

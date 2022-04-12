@@ -1,8 +1,6 @@
 import { Player } from "@/models/common";
 import { Box, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
-import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import React, { useMemo } from "react";
-import ReactMarkdown from "react-markdown";
+import React from "react";
 
 interface IPlayerListProps {
 	players: Player[];
