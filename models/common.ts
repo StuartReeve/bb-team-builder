@@ -1,3 +1,7 @@
+interface SupabaseTeam extends Team {
+	team_player_assignment: TeamPlayerAssignment[];
+}
+
 interface Team {
 	id: number;
 	name: string;
@@ -28,6 +32,14 @@ interface Player {
 	armor: number;
 	singles: string;
 	doubles: string;
+	max_count: number;
 }
 
-export type { Team, TeamCategory, Player };
+interface TeamPlayerAssignment {
+	team_id: number;
+	player_id: number;
+	max_count: number;
+	player: Player;
+}
+
+export type { Team, TeamCategory, Player, TeamPlayerAssignment, SupabaseTeam };

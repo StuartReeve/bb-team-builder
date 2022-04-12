@@ -15,7 +15,9 @@ const PlayerList: React.FC<IPlayerListProps> = ({ players }) => {
 			<Box my={4}>
 				<UnorderedList px={2}>
 					{players.map((p) => (
-						<ListItem key={p.id}>{p.name}</ListItem>
+						<ListItem key={p.id}>
+							<strong>0 - {p.max_count}</strong> {p.name}
+						</ListItem>
 					))}
 				</UnorderedList>
 			</Box>

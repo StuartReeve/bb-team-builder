@@ -34,8 +34,8 @@ const customTheme = {
 
 const TextSection: React.FC<ITextSectionProps> = ({ heading, text, emptyText }) => {
 	const displayText = useMemo(() => {
-		if (text) {
-			return text.replaceAll("\\n", "\n");
+		if (text && text.length > 0) {
+			return text.replace(/\\n/g, "\n");
 		} else {
 			return emptyText;
 		}
