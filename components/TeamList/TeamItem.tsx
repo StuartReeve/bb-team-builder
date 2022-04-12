@@ -1,6 +1,6 @@
 import { Team } from "@/models/common";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Avatar, Box, Collapse, Flex, Heading, Tag, useDisclosure } from "@chakra-ui/react";
+import { Avatar, Box, Collapse, Flex, Heading, Tag, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import PlayerList from "./PlayerList";
 import TextSection from "./TextSection";
@@ -10,6 +10,7 @@ interface ITeamItemProps {
 }
 
 const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
+	const isLargeScreen = useBreakpointValue({ sm: true });
 	const { isOpen, onToggle } = useDisclosure();
 
 	const getAvatarText = () => {
@@ -39,24 +40,28 @@ const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
 						Tier {team.tier} - {team.roster_type}
 					</Heading>
 				</Box>
-				<Box flex="1">
-					{team.team_categories.map((categ) => {
-						return (
-							<Tag key={categ.id} backgroundColor="white" m={2}>
-								{categ.category}
-							</Tag>
-						);
-					})}
-				</Box>
-				<Box flex="1">
-					{distinctRaces.map((race) => {
-						return (
-							<Tag key={race} backgroundColor="white" m={2}>
-								{race}
-							</Tag>
-						);
-					})}
-				</Box>
+				{isLargeScreen && (
+					<Box flex="1">
+						{team.team_categories.map((categ) => {
+							return (
+								<Tag key={categ.id} backgroundColor="white" m={2}>
+									{categ.category}
+								</Tag>
+							);
+						})}
+					</Box>
+				)}
+				{isLargeScreen && (
+					<Box flex="1">
+						{distinctRaces.map((race) => {
+							return (
+								<Tag key={race} backgroundColor="white" m={2}>
+									{race}
+								</Tag>
+							);
+						})}
+					</Box>
+				)}
 				<ChevronDownIcon
 					color="purple"
 					boxSize={8}
