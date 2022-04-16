@@ -29,7 +29,7 @@ const Home: NextPage<IHomeProps> = ({ teams }) => {
 	const { filteredTeams } = useFilterTeams(teams, filterOptions);
 
 	return (
-		<Box>
+		<Box minHeight="100vh">
 			<Head>
 				<title>Mixed Team Builder</title>
 				<meta name="description" content="A Blood Bowl 2 Mixed Team Builder." />
