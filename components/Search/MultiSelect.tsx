@@ -1,5 +1,5 @@
-import { Box, useDisclosure, Input, Checkbox, Flex } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import { Box, useDisclosure, Input, Checkbox, Flex, useOutsideClick } from "@chakra-ui/react";
+import React, { useMemo, useRef } from "react";
 
 export interface IMultiSelectProps {
 	items: string[];
@@ -14,7 +14,12 @@ export type MultiSelectItem = {
 };
 
 const MultiSelect: React.FC<IMultiSelectProps> = ({ items, getText, toggleItem, isItemSelected }) => {
-	const { isOpen, onToggle } = useDisclosure();
+	const selectRef = useRef(null);
+	const { isOpen, onClose, onToggle } = useDisclosure();
+	useOutsideClick({
+		ref: selectRef,
+		handler: onClose,
+	});
 
 	const multiSelectItems: MultiSelectItem[] = useMemo(() => {
 		return items.map((item) => {
@@ -24,7 +29,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({ items, getText, toggleItem, 
 	}, [isItemSelected, items]);
 
 	return (
-		<Box position="relative" borderRadius={2}>
+		<Box ref={selectRef} position="relative" borderRadius={2}>
 			<Input
 				placeholder={getText()}
 				focusBorderColor="purple"
