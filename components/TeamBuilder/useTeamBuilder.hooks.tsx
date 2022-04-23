@@ -13,6 +13,7 @@ interface ITeamBuilderContext {
 	addReroll: () => void;
 	addApo: () => void;
 	addPlayer: (playerId: number) => void;
+	removePlayer: (playerId: number) => void;
 }
 
 const TeamBuilderContext = createContext<ITeamBuilderContext>({} as ITeamBuilderContext);
@@ -54,6 +55,22 @@ export const TeamBuilderProvider: React.FC<ITeamBuilderProviderProps> = ({ child
 		[team.players, teamPlayers]
 	);
 
+	const removePlayer = useCallback(
+		(playerId: number) => {
+			const player = team.players.find((p) => p.id === playerId);
+			const teamPlayerCount = teamPlayers[playerId];
+			if (!player || teamPlayerCount <= 0) return;
+
+			setTeamPlayers((prevState) => {
+				const newState = { ...prevState };
+				newState[playerId] = newState[playerId] > 0 ? newState[playerId] - 1 : 0;
+				return newState;
+			});
+			setTeamCost((prevState) => prevState - player.cost);
+		},
+		[team.players, teamPlayers]
+	);
+
 	const teamBuilderContext: ITeamBuilderContext = {
 		teamCost,
 		players: teamPlayers,
@@ -62,6 +79,7 @@ export const TeamBuilderProvider: React.FC<ITeamBuilderProviderProps> = ({ child
 		addReroll,
 		addApo,
 		addPlayer,
+		removePlayer,
 	};
 
 	return <TeamBuilderContext.Provider value={teamBuilderContext}>{children}</TeamBuilderContext.Provider>;

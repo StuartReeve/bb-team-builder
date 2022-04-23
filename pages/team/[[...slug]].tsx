@@ -34,7 +34,7 @@ const TeamPage: NextPage<ITeamPageProps> = ({ team }) => {
 							</Box>
 							<TeamBuilder team={team} />
 						</Box>
-						<TeamSummary />
+						<TeamSummary team={team} />
 					</Box>
 				</TeamBuilderProvider>
 			)}
