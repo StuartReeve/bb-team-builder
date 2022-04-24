@@ -7,7 +7,7 @@ import { Box, Container } from "@chakra-ui/react";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { useMemo, useState } from "react";
-import { getTeams } from "services/teams/getAll";
+import { getTeams } from "services/teams/get";
 
 interface IHomeProps {
 	teams: Team[];

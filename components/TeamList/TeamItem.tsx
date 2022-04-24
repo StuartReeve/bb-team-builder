@@ -1,16 +1,27 @@
 import { Team } from "@/models/common";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Avatar, Box, Collapse, Flex, Heading, Tag, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import {
+	Avatar,
+	Box,
+	Button,
+	Center,
+	Collapse,
+	Flex,
+	Heading,
+	Tag,
+	useBreakpointValue,
+	useDisclosure,
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useMemo } from "react";
-import PlayerList from "./PlayerList";
-import RetiredBanner from "./retiredBanner";
-import TextSection from "./TextSection";
+import TeamInfo from "../TeamInfo";
 
 interface ITeamItemProps {
 	team: Team;
 }
 
 const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
+	const router = useRouter();
 	const isLargeScreen = useBreakpointValue({ sm: true });
 	const { isOpen, onToggle } = useDisclosure();
 
@@ -71,16 +82,10 @@ const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
 				/>
 			</Flex>
 			<Collapse in={isOpen} animateOpacity>
-				<Box p={8}>
-					{team.roster_type === "Retired" && <RetiredBanner />}
-					<PlayerList players={team.players} />
-					<TextSection
-						heading="Additional Composition Rules"
-						text={team.additional_rules}
-						emptyText="No special rules for this team."
-					/>
-					<TextSection heading="Notes" text={team.notes} emptyText="No additional notes for this team." />
-				</Box>
+				<TeamInfo team={team} />
+				<Center p={8}>
+					<Button onClick={() => router.push(`/team/${team.id}`)}>Create Team</Button>
+				</Center>
 			</Collapse>
 		</Box>
 	);

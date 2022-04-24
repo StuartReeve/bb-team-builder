@@ -1,12 +1,16 @@
 import { Player } from "@/models/common";
 import { Box, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface IPlayerListProps {
 	players: Player[];
 }
 
 const PlayerList: React.FC<IPlayerListProps> = ({ players }) => {
+	const sortedPlayers = useMemo(() => {
+		return players.sort((a, b) => (a.name > b.name ? 1 : -1));
+	}, [players]);
+
 	return (
 		<Box>
 			<Heading size="sm">Players</Heading>
