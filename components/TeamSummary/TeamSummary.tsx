@@ -14,6 +14,10 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 		return teamBuilderData.rerolls || teamBuilderData.apo || teamBuilderData.stadium;
 	}, [teamBuilderData.rerolls, teamBuilderData.apo, teamBuilderData.stadium]);
 
+	const playerCount = useMemo(() => {
+		return Object.values(teamBuilderData.players).reduce((prev, curr) => prev + curr, 0);
+	}, [teamBuilderData.players]);
+
 	const getPlayerName = useCallback(
 		(playerId: number) => {
 			const player = team.players.find((p) => p.id === playerId);
@@ -36,7 +40,7 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 				Team Summary
 			</Heading>
 			<SummarySectionHeader text="Players" />
-			{!Object.keys(teamBuilderData.players).length && <Heading size="sm">No Players Selected</Heading>}
+			{!playerCount && <Heading size="sm">No Players Selected</Heading>}
 			{Object.keys(teamBuilderData.players).map((key) => {
 				return (
 					<SummaryItem
@@ -47,6 +51,9 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 					/>
 				);
 			})}
+			<Heading size="md" my={2} py={2} textAlign="right">
+				{playerCount}/16
+			</Heading>
 			<SummarySectionHeader text="Extras" />
 			{!hasExtrasSelected && <Heading size="sm">No Extras Selected</Heading>}
 			{!!teamBuilderData.rerolls && (

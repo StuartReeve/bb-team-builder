@@ -15,7 +15,7 @@ const BuilderPlayerListItem: React.FC<IBuilderPlayerListItemProps> = ({ player }
 			<Heading size="md" flex="1" my="auto">
 				{player.name}
 			</Heading>
-			<Text my="auto" flex="1">
+			<Text my="auto" flex="1" fontWeight="bold">
 				{player.cost}K
 			</Text>
 			<PlayerAmountButtons

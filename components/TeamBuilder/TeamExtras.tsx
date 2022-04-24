@@ -21,14 +21,16 @@ const TeamExtras: React.FC<ITeamExtraProps> = ({ team }) => {
 				onAdd={teamBuilderData.addReroll}
 				onRemove={teamBuilderData.removeReroll}
 			/>
-			<TeamExtraListItem
-				text="Apothecary"
-				cost={team.apo_cost}
-				amount={teamBuilderData.apo}
-				canAdd={!teamBuilderData.apo}
-				onAdd={teamBuilderData.addApo}
-				onRemove={teamBuilderData.removeApo}
-			/>
+			{!!team.apo_cost && (
+				<TeamExtraListItem
+					text="Apothecary"
+					cost={team.apo_cost}
+					amount={teamBuilderData.apo}
+					canAdd={!teamBuilderData.apo}
+					onAdd={teamBuilderData.addApo}
+					onRemove={teamBuilderData.removeApo}
+				/>
+			)}
 			<TeamExtraListItem
 				text="Stadium Upgrade/Stadium Enhancement"
 				cost={100}

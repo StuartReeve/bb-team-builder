@@ -16,7 +16,7 @@ const TeamExtraListItem: React.FC<TeamExtraListItemProps> = ({ text, cost, amoun
 			<Heading size="md" flex="1" my="auto">
 				{text}
 			</Heading>
-			<Text my="auto" flex="1">
+			<Text my="auto" flex="1" fontWeight="bold">
 				{cost}K
 			</Text>
 			<TeamExtraAmountButtons amount={amount} canAdd={canAdd} onAdd={onAdd} onRemove={onRemove} />
