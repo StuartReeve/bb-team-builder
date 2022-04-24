@@ -3,6 +3,7 @@ import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import TeamInfo from "../TeamInfo";
 import BuilderPlayerList from "./BuilderPlayerList";
+import TeamExtras from "./TeamExtras";
 
 interface TeamBuilderTab {
 	component: React.ReactChild;
@@ -29,7 +30,7 @@ const TeamBuilder: React.FC<ITeamBuilderProps> = ({ team }) => {
 				text: "Players",
 			},
 			{
-				component: <Box />,
+				component: <TeamExtras team={team} />,
 				text: "Team Extras",
 			},
 		];

@@ -10,8 +10,13 @@ interface ITeamBuilderContext {
 	players: { [key: number]: number };
 	rerolls: number;
 	apo: number;
+	stadium: number;
 	addReroll: () => void;
+	removeReroll: () => void;
 	addApo: () => void;
+	removeApo: () => void;
+	addStadium: () => void;
+	removeStadium: () => void;
 	addPlayer: (playerId: number) => void;
 	removePlayer: (playerId: number) => void;
 }
@@ -27,17 +32,42 @@ export const TeamBuilderProvider: React.FC<ITeamBuilderProviderProps> = ({ child
 	const [teamPlayers, setTeamPlayers] = useState<{ [key: number]: number }>([]);
 	const [rerolls, setRerolls] = useState(0);
 	const [apo, setApo] = useState(0);
+	const [stadium, setStadium] = useState(0);
 
 	const addReroll = useCallback(() => {
 		setRerolls((prevState) => ++prevState);
 		setTeamCost((prevState) => prevState + team.reroll_cost);
 	}, [team.reroll_cost]);
 
+	const removeReroll = useCallback(() => {
+		if (!rerolls) return;
+		setRerolls((prevState) => --prevState);
+		setTeamCost((prevState) => prevState - team.reroll_cost);
+	}, [rerolls, team.reroll_cost]);
+
 	const addApo = useCallback(() => {
 		if (apo) return;
 		setApo((prevState) => ++prevState);
 		setTeamCost((prevState) => prevState + team.apo_cost);
 	}, [apo, team.apo_cost]);
+
+	const removeApo = useCallback(() => {
+		if (!apo) return;
+		setApo((prevState) => --prevState);
+		setTeamCost((prevState) => prevState - team.apo_cost);
+	}, [apo, team.apo_cost]);
+
+	const addStadium = useCallback(() => {
+		if (stadium >= 2) return;
+		setStadium((prevState) => ++prevState);
+		setTeamCost((prevState) => prevState + 100);
+	}, [stadium]);
+
+	const removeStadium = useCallback(() => {
+		if (!stadium) return;
+		setStadium((prevState) => --prevState);
+		setTeamCost((prevState) => prevState - 100);
+	}, [stadium]);
 
 	const addPlayer = useCallback(
 		(playerId: number) => {
@@ -64,6 +94,9 @@ export const TeamBuilderProvider: React.FC<ITeamBuilderProviderProps> = ({ child
 			setTeamPlayers((prevState) => {
 				const newState = { ...prevState };
 				newState[playerId] = newState[playerId] > 0 ? newState[playerId] - 1 : 0;
+				if (newState[playerId] === 0) {
+					delete newState[playerId];
+				}
 				return newState;
 			});
 			setTeamCost((prevState) => prevState - player.cost);
@@ -76,8 +109,13 @@ export const TeamBuilderProvider: React.FC<ITeamBuilderProviderProps> = ({ child
 		players: teamPlayers,
 		rerolls,
 		apo,
+		stadium,
 		addReroll,
+		removeReroll,
 		addApo,
+		removeApo,
+		addStadium,
+		removeStadium,
 		addPlayer,
 		removePlayer,
 	};

@@ -3,22 +3,15 @@ import { Button, Flex, Heading, HStack, Text } from "@chakra-ui/react";
 import React from "react";
 import { useTeamBuilder } from "./useTeamBuilder.hooks";
 
-interface IBuilderPlayerListItem {
+interface IBuilderPlayerListItemProps {
 	player: Player;
 }
 
-const BuilderPlayerListItem: React.FC<IBuilderPlayerListItem> = ({ player }) => {
+const BuilderPlayerListItem: React.FC<IBuilderPlayerListItemProps> = ({ player }) => {
 	const teamBuilderData = useTeamBuilder();
 
 	return (
-		<Flex
-			key={player.id}
-			borderRadius={12}
-			p={8}
-			my={4}
-			backgroundColor="purpleLightest"
-			justifyContent="space-between"
-		>
+		<Flex borderRadius={12} p={8} my={4} backgroundColor="purpleLightest" justifyContent="space-between">
 			<Heading size="md" flex="1" my="auto">
 				{player.name}
 			</Heading>
@@ -35,14 +28,14 @@ const BuilderPlayerListItem: React.FC<IBuilderPlayerListItem> = ({ player }) => 
 	);
 };
 
-interface IPlayerAmountButtons {
+interface IPlayerAmountButtonsProps {
 	amount: number;
 	maxCount: number;
 	onAdd: () => void;
 	onRemove: () => void;
 }
 
-const PlayerAmountButtons: React.FC<IPlayerAmountButtons> = ({ amount, maxCount, onAdd, onRemove }) => {
+const PlayerAmountButtons: React.FC<IPlayerAmountButtonsProps> = ({ amount, maxCount, onAdd, onRemove }) => {
 	return (
 		<HStack gap={4}>
 			<Button onClick={onRemove} isDisabled={!amount}>

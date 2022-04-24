@@ -1,6 +1,6 @@
 import { Team } from "@/models/common";
 import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useTeamBuilder } from "../TeamBuilder/useTeamBuilder.hooks";
 
 interface ITeamSummaryProps {
@@ -9,6 +9,10 @@ interface ITeamSummaryProps {
 
 const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 	const teamBuilderData = useTeamBuilder();
+
+	const hasExtrasSelected = useMemo(() => {
+		return teamBuilderData.rerolls || teamBuilderData.apo || teamBuilderData.stadium;
+	}, [teamBuilderData.rerolls, teamBuilderData.apo, teamBuilderData.stadium]);
 
 	const getPlayerName = useCallback(
 		(playerId: number) => {
@@ -32,6 +36,7 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 				Team Summary
 			</Heading>
 			<SummarySectionHeader text="Players" />
+			{!Object.keys(teamBuilderData.players).length && <Heading size="sm">No Players Selected</Heading>}
 			{Object.keys(teamBuilderData.players).map((key) => {
 				return (
 					<SummaryItem
@@ -43,8 +48,16 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 				);
 			})}
 			<SummarySectionHeader text="Extras" />
-			<SummaryItem text="Team Rerolls" count={teamBuilderData.rerolls} cost={team.reroll_cost} />
-			<SummaryItem text="Apothecary" count={teamBuilderData.apo} cost={team.apo_cost} />
+			{!hasExtrasSelected && <Heading size="sm">No Extras Selected</Heading>}
+			{!!teamBuilderData.rerolls && (
+				<SummaryItem text="Team Rerolls" count={teamBuilderData.rerolls} cost={team.reroll_cost} />
+			)}
+			{!!teamBuilderData.apo && (
+				<SummaryItem text="Apothecary" count={teamBuilderData.apo} cost={team.apo_cost} />
+			)}
+			{!!teamBuilderData.stadium && (
+				<SummaryItem text="Stadium Upgrade/Stadium Enhancement" count={teamBuilderData.stadium} cost={100} />
+			)}
 			<SummaryTotal teamCost={teamBuilderData.teamCost} />
 		</Box>
 	);
@@ -76,7 +89,7 @@ interface ISummarySectionHeaderProps {
 
 const SummarySectionHeader: React.FC<ISummarySectionHeaderProps> = ({ text }) => {
 	return (
-		<Box mb={8}>
+		<Box my={8}>
 			<Heading size="md" py={2}>
 				{text}
 			</Heading>
