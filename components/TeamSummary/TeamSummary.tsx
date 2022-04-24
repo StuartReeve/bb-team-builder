@@ -1,5 +1,5 @@
 import { Team } from "@/models/common";
-import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Flex, Heading, Text, useToast } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { useTeamBuilder } from "../TeamBuilder/useTeamBuilder.hooks";
 
@@ -9,6 +9,36 @@ interface ITeamSummaryProps {
 
 const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 	const teamBuilderData = useTeamBuilder();
+	const toast = useToast();
+
+	const shareBuild = () => {
+		const shareText = `
+${team.name}
+------------------------------
+${Object.keys(teamBuilderData.players)
+	.map((key) => {
+		return `${teamBuilderData.players[parseInt(key)]}x ${getPlayerName(parseInt(key))}`;
+	})
+	.join("\r\n")}
+------------------------------
+${teamBuilderData.rerolls}x Team Rerolls
+${teamBuilderData.apo}x Apothecary
+${teamBuilderData.stadium}x Stadium Upgrade/Stadium Enhancement
+------------------------------
+Team Cost: ${teamBuilderData.teamCost}K
+------------------------------
+`;
+		navigator.clipboard.writeText(shareText);
+		toast({
+			title: "Team Copied to Clipboard",
+			duration: 3000,
+			render: () => (
+				<Box color="white" backgroundColor="purple" p={3} borderRadius={8} textAlign="center">
+					Team Copied To Clipboard
+				</Box>
+			),
+		});
+	};
 
 	const hasExtrasSelected = useMemo(() => {
 		return teamBuilderData.rerolls || teamBuilderData.apo || teamBuilderData.stadium;
@@ -51,7 +81,7 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 					/>
 				);
 			})}
-			<Heading size="md" my={2} py={2} textAlign="right">
+			<Heading size="md" mb={2} py={2} textAlign="right">
 				{playerCount}/16
 			</Heading>
 			<SummarySectionHeader text="Extras" />
@@ -66,6 +96,11 @@ const TeamSummary: React.FC<ITeamSummaryProps> = ({ team }) => {
 				<SummaryItem text="Stadium Upgrade/Stadium Enhancement" count={teamBuilderData.stadium} cost={100} />
 			)}
 			<SummaryTotal teamCost={teamBuilderData.teamCost} />
+			<Center my={8}>
+				<Button onClick={shareBuild} isFullWidth>
+					Share Team
+				</Button>
+			</Center>
 		</Box>
 	);
 };
@@ -121,5 +156,4 @@ const SummaryTotal: React.FC<ISummaryTotalProps> = ({ teamCost }) => {
 		</Flex>
 	);
 };
-
 export default TeamSummary;

@@ -34,9 +34,20 @@ const components = {
 			color: "purple",
 		},
 	},
-	Menu: {
-		baseStyle: {
-			width: "100%",
+	Button: {
+		variants: {
+			solid() {
+				return {
+					backgroundColor: "purple",
+					color: "white",
+					_hover: {
+						backgroundColor: "purpleLight",
+					},
+					_active: {
+						backgroundColor: "purpleLight",
+					},
+				};
+			},
 		},
 	},
 };

@@ -1,6 +1,18 @@
 import { Team } from "@/models/common";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Avatar, Box, Collapse, Flex, Heading, Tag, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import {
+	Avatar,
+	Box,
+	Button,
+	Center,
+	Collapse,
+	Flex,
+	Heading,
+	Tag,
+	useBreakpointValue,
+	useDisclosure,
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useMemo } from "react";
 import TeamInfo from "../TeamInfo";
 
@@ -9,6 +21,7 @@ interface ITeamItemProps {
 }
 
 const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
+	const router = useRouter();
 	const isLargeScreen = useBreakpointValue({ sm: true });
 	const { isOpen, onToggle } = useDisclosure();
 
@@ -70,6 +83,9 @@ const TeamItem: React.FC<ITeamItemProps> = ({ team }) => {
 			</Flex>
 			<Collapse in={isOpen} animateOpacity>
 				<TeamInfo team={team} />
+				<Center p={8}>
+					<Button onClick={() => router.push(`/team/${team.id}`)}>Create Team</Button>
+				</Center>
 			</Collapse>
 		</Box>
 	);

@@ -1,14 +1,14 @@
 import Hero from "@/components/Hero";
 import TeamBuilder from "@/components/TeamBuilder";
-import BuilderPlayerList from "@/components/TeamBuilder/BuilderPlayerList";
 import { TeamBuilderProvider } from "@/components/TeamBuilder/useTeamBuilder.hooks";
 import TeamSummary from "@/components/TeamSummary";
 import { Team } from "@/models/common";
 import { getFirstOrString } from "@/utils/getFirstOrString";
-import { Box, Text, Heading, Spinner } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
+import { Box, Heading, Spinner, Flex } from "@chakra-ui/react";
 import type { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import Head from "next/head";
-import { useMemo } from "react";
+import { useRouter } from "next/router";
 import { getTeamById, getTeams } from "services/teams/get";
 
 interface ITeamPageProps {
@@ -16,6 +16,7 @@ interface ITeamPageProps {
 }
 
 const TeamPage: NextPage<ITeamPageProps> = ({ team }) => {
+	const router = useRouter();
 	return (
 		<Box height="100vh" display="flex">
 			<Head>
@@ -28,10 +29,15 @@ const TeamPage: NextPage<ITeamPageProps> = ({ team }) => {
 				<TeamBuilderProvider team={team}>
 					<Box display="flex" flex="1">
 						<Box flex="2" height="100vh" overflowY="auto" p={8}>
-							<Box>
+							<Flex gap={8} alignItems="center">
+								<ArrowBackIcon
+									color="purple"
+									boxSize={8}
+									cursor="pointer"
+									onClick={() => router.push("/")}
+								/>
 								<Heading my={4}>Creating {team.name}</Heading>
-								{/* <Box height="1px" backgroundColor="purple" /> */}
-							</Box>
+							</Flex>
 							<TeamBuilder team={team} />
 						</Box>
 						<TeamSummary team={team} />
