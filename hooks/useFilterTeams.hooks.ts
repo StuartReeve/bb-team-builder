@@ -25,7 +25,8 @@ const useFilterTeams = (teams: Team[], teamFilterOptions: TeamFilterOptions): Us
 		setFilteredTeams(
 			teams.filter(
 				(team) =>
-					team.name.toLowerCase().includes(teamFilterOptions.searchTerm.toLocaleLowerCase()) &&
+					(team.name.toLowerCase().includes(teamFilterOptions.searchTerm.toLocaleLowerCase()) ||
+						team.tag.toLowerCase().includes(teamFilterOptions.searchTerm.toLocaleLowerCase())) &&
 					filteredCategories.every((c) => team.team_categories.find((tc) => tc.category === c)) &&
 					filteredRaces.every((r) => getDistinctRacesFromPlayers(team.players).find((pr) => pr === r))
 			)
