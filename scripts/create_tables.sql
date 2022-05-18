@@ -127,7 +127,6 @@ INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('z 
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('z (SL) Sigmar League', '', 'Alternative', '1', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('z (VL) Valkyrie League', '', 'Alternative', '1', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('z (AL) Aspirant League', '', 'Alternative', '2', '50', '50');
---TODO: Check Apo cost and reroll cost of these teams
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('The Buddy System', '(<3)', 'Alternative', '7', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Chaos Chosen of Nuffle', 'ARAC', 'Alternative', '4', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Noxious Nurgle', '', 'Alternative', '4', '50', '50');
@@ -139,6 +138,14 @@ INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('La
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Knights of Khorne', '(KoK)', 'Alternative', '3', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('The Short and the Stout', '(S&S)', 'Special', '3', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Gather the Herd!', '(GtH)', 'Special', '2', '50', '50');
+
+
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Clan Eshin Pact', '(CEP)', 'Alternative', '1', '60', '50');
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Avelorn Sisterhood Coalition', '(ASC)', 'Alternative', '1', '50', '50');
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Alliance of Crusaders', '(AoC)', 'Alternative', '2', '50', '50');
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Arkhan''s United', '(AU)', 'Alternative', '2', '70', NULL);
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Kislev League', '(KL)', 'Alternative', '2', '50', '50');
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Savage Orcs', '(SO)', 'Special', '3', '60', '50');
 
 ------------------------------------
 -- Fix tags
@@ -299,6 +306,8 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'The Buddy System'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Numbskulls'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Alliance of Insurgency'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Savage Orcs'));
+
 
 INSERT INTO team_category(category) VALUES('Dash');
 
@@ -318,6 +327,11 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Dash'), (SELECT id from team WHERE name = 'True King''s Coalition')); 
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Dash'), (SELECT id from team WHERE name = 'Aspirant League'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Dash'), (SELECT id from team WHERE name = 'The Sacred Number')); 
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Dash'), (SELECT id from team WHERE name = 'Clan Eshin Pact')); 
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Dash'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition')); 
+
+
+
 
 INSERT INTO team_category(category) VALUES('Hybrid');
 
@@ -358,6 +372,10 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Hybrid'), (SELECT id from team WHERE name = 'Knights of Khorne'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Hybrid'), (SELECT id from team WHERE name = 'The Short and the Stout'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Hybrid'), (SELECT id from team WHERE name = 'Gather the Herd!'));  
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Hybrid'), (SELECT id from team WHERE name = 'Alliance of Crusaders'));  
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Hybrid'), (SELECT id from team WHERE name = 'Arkhan''s United'));  
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Hybrid'), (SELECT id from team WHERE name = 'Kislev League'));
+
 
 INSERT INTO team_category(category) VALUES('Stunty');
 
@@ -386,6 +404,9 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Halfling'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Exiled Player Pact'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Lahmian High Society'));  
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Savage Orcs'));  
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Khorne Norse'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Knights of Khorne'));
 
 INSERT INTO team_category(category) VALUES('High Difficulty');
 
@@ -434,6 +455,8 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Beginner-Friendly'), (SELECT id from team WHERE name = 'Alliance of the Lady'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Beginner-Friendly'), (SELECT id from team WHERE name = 'Sigmar League'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Beginner-Friendly'), (SELECT id from team WHERE name = 'Valkyrie League'));  
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Beginner-Friendly'), (SELECT id from team WHERE name = 'Alliance of Crusaders'));  
+
 
 INSERT INTO team_category(category) VALUES('High Variance');
 
@@ -479,6 +502,9 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Strong Start'), (SELECT id from team WHERE name = 'Player Elimination Pact'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Strong Start'), (SELECT id from team WHERE name = 'Sigmar League'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Strong Start'), (SELECT id from team WHERE name = 'Valkyrie League'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Strong Start'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Strong Start'), (SELECT id from team WHERE name = 'Alliance of Crusaders'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Strong Start'), (SELECT id from team WHERE name = 'Anti-Fur Society'));  
 
 INSERT INTO team_category(category) VALUES('Developmental');
 
@@ -509,6 +535,9 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Developmental'), (SELECT id from team WHERE name = 'Elven Slavery Ring'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Developmental'), (SELECT id from team WHERE name = 'Lionheart League'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Developmental'), (SELECT id from team WHERE name = 'Gather the Herd!'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Developmental'), (SELECT id from team WHERE name = 'Clan Eshin Pact'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Developmental'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'));
+
 
 INSERT INTO team_category(category) VALUES('Low TV Build Available');
 
@@ -532,6 +561,10 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Halfling'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Goblin'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Alliance of Swiftness'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Clan Eshin Pact'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Kislev League'));
+
+
 
 INSERT INTO team_category(category) VALUES('Prone to Bloat');
 
@@ -549,6 +582,10 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Prone to Bloat'), (SELECT id from team WHERE name = 'Lahmian High Society'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Prone to Bloat'), (SELECT id from team WHERE name = 'Vampire'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Prone to Bloat'), (SELECT id from team WHERE name = 'Chosen of Tzeentch'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Prone to Bloat'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Prone to Bloat'), (SELECT id from team WHERE name = 'Savage Orcs'));
+
+
 
 ------------------------------------
 -- Populate Team Player Assignment
@@ -1053,5 +1090,49 @@ INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT
 INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Goblin Troll'), (SELECT id from team WHERE name = 'The Buddy System'), 2);
 INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Halfling'), (SELECT id from team WHERE name = 'The Buddy System'), 2);
 INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Halfling Treeman'), (SELECT id from team WHERE name = 'The Buddy System'), 2);
+
+
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Skaven Lineman'), (SELECT id from team WHERE name = 'Clan Eshin Pact'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Underworld Goblin'), (SELECT id from team WHERE name = 'Clan Eshin Pact'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Skaven Gutter Runner'), (SELECT id from team WHERE name = 'Clan Eshin Pact'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Dark Elf Assassin'), (SELECT id from team WHERE name = 'Clan Eshin Pact'), 2);
+
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'High Elf Lineman'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'High Elf Thrower'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Wood Elf Catcher'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Elven Union Blitzer'), (SELECT id from team WHERE name = 'Avelorn Sisterhood Coalition'), 2);
+
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Bretonnian Lineman'), (SELECT id from team WHERE name = 'Alliance of Crusaders'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Bretonnian Blitzer'), (SELECT id from team WHERE name = 'Alliance of Crusaders'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Human Blitzer'), (SELECT id from team WHERE name = 'Alliance of Crusaders'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Human Thrower'), (SELECT id from team WHERE name = 'Alliance of Crusaders'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Dwarf Troll Slayer'), (SELECT id from team WHERE name = 'Alliance of Crusaders'), 2);
+
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Undead Zombie'), (SELECT id from team WHERE name = 'Arkhan''s United'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Undead Ghoul'), (SELECT id from team WHERE name = 'Arkhan''s United'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Undead Wight'), (SELECT id from team WHERE name = 'Arkhan''s United'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Vampire Thrall'), (SELECT id from team WHERE name = 'Arkhan''s United'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Vampire Vampire'), (SELECT id from team WHERE name = 'Arkhan''s United'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Khemri Skeleton'), (SELECT id from team WHERE name = 'Arkhan''s United'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Khemri Blitz-Ra'), (SELECT id from team WHERE name = 'Arkhan''s United'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Khemri Tomb Guardian'), (SELECT id from team WHERE name = 'Arkhan''s United'), 2);
+
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Bretonnian Lineman'), (SELECT id from team WHERE name = 'Kislev League'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Bretonnian Blocker'), (SELECT id from team WHERE name = 'Kislev League'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Human Catcher'), (SELECT id from team WHERE name = 'Kislev League'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Amazon Thrower'), (SELECT id from team WHERE name = 'Kislev League'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Kislev Tame Bear'), (SELECT id from team WHERE name = 'Kislev League'), 2);
+
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Chaos Dwarf Hobgoblin'), (SELECT id from team WHERE name = 'Savage Orcs'), 16);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Chaos Dwarf Bull Centaur'), (SELECT id from team WHERE name = 'Savage Orcs'), 2);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Orc Black Orc'), (SELECT id from team WHERE name = 'Savage Orcs'), 4);
+INSERT INTO team_player_assignment(player_id, team_id, max_count) VALUES((SELECT id FROM player WHERE name = 'Skaven Rat Ogre'), (SELECT id from team WHERE name = 'Savage Orcs'), 1);
+
+
+
+
+
+
+
 
 
