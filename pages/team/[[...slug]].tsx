@@ -1,4 +1,3 @@
-import Hero from "@/components/Hero";
 import TeamBuilder from "@/components/TeamBuilder";
 import { TeamBuilderProvider } from "@/components/TeamBuilder/useTeamBuilder.hooks";
 import TeamSummary from "@/components/TeamSummary";
