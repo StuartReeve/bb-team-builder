@@ -58,7 +58,9 @@ const PickATeamPage: NextPage<IPickATeamProps> = ({ teams }) => {
 
 	const handledCloseModal = () => {
 		setSelectedTeams((prevState) => {
-			return [...prevState.filter((t) => t !== teamLandedOn)];
+			if (!teamLandedOn) return prevState;
+			prevState.splice(prevState.indexOf(teamLandedOn), 1);
+			return [...prevState];
 		});
 		setTeamLandedOn(null);
 	};
