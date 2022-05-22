@@ -1,5 +1,5 @@
 import { Player } from "@/models/common";
-import { Box, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Box, Heading, ListItem, UnorderedList, Text } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 
 interface IPlayerListProps {
@@ -18,10 +18,24 @@ const PlayerList: React.FC<IPlayerListProps> = ({ players }) => {
 				<UnorderedList px={2}>
 					{players.map((p) => (
 						<ListItem key={p.id}>
-							<strong>0 - {p.max_count}</strong> {p.name}
+							<strong>
+								0 - {p.max_count}
+								{p.special_rule_applies && (
+									<Text as="span" color="purple">
+										{" "}
+										*
+									</Text>
+								)}
+							</strong>{" "}
+							{p.name}
 						</ListItem>
 					))}
 				</UnorderedList>
+				{players.some((p) => p.special_rule_applies) && (
+					<Text color="purple">
+						<strong>*</strong> This player has special rules applied to it
+					</Text>
+				)}
 			</Box>
 		</Box>
 	);

@@ -146,6 +146,7 @@ INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Al
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Arkhan''s United', '(AU)', 'Alternative', '2', '70', NULL);
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Kislev League', '(KL)', 'Alternative', '2', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Savage Orcs', '(SO)', 'Special', '3', '60', '50');
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Tasty Morsels', '(npm)', 'Special', '2', '60', '50');
 
 ------------------------------------
 -- Fix tags

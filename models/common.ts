@@ -32,6 +32,7 @@ interface Player {
 	armor: number;
 	singles: string;
 	doubles: string;
+	special_rule_applies: boolean;
 	max_count: number;
 }
 
@@ -39,6 +40,7 @@ interface TeamPlayerAssignment {
 	team_id: number;
 	player_id: number;
 	max_count: number;
+	special_rule_applies: boolean;
 	player: Player;
 }
 
