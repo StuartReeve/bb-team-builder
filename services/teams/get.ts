@@ -10,7 +10,7 @@ export const getTeams = async (): Promise<Team[]> => {
 
 	const teams = supabaseTeams.data?.map((st) => {
 		st.players = st.team_player_assignment.map((tpa) => {
-			return { ...tpa.player, max_count: tpa.max_count };
+			return { ...tpa.player, max_count: tpa.max_count, special_rule_applies: tpa.special_rule_applies };
 		});
 		return st as Team;
 	});
