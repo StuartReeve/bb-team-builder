@@ -146,7 +146,7 @@ INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Al
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Arkhan''s United', '(AU)', 'Alternative', '2', '70', NULL);
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Kislev League', '(KL)', 'Alternative', '2', '50', '50');
 INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Savage Orcs', '(SO)', 'Special', '3', '60', '50');
-INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Tasty Morsels', '(npm)', 'Special', '2', '60', '50');
+INSERT INTO team(name, tag, roster_type, tier, reroll_cost, apo_cost) VALUES('Tasty Morsels', '(nom)', 'Special', '2', '60', '50');
 
 ------------------------------------
 -- Fix tags
@@ -308,6 +308,9 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Numbskulls'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Alliance of Insurgency'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Savage Orcs'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Bash'), (SELECT id from team WHERE name = 'Tasty Morsels'));
+
+
 
 
 INSERT INTO team_category(category) VALUES('Dash');
@@ -393,6 +396,7 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Stunty'), (SELECT id from team WHERE name = 'Exiled Player Pact')); 
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Stunty'), (SELECT id from team WHERE name = 'The Short and the Stout')); 
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Stunty'), (SELECT id from team WHERE name = 'The Buddy System')); 
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Stunty'), (SELECT id from team WHERE name = 'Tasty Morsels'));
 
 INSERT INTO team_category(category) VALUES('Specialist');
 
@@ -408,6 +412,7 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Savage Orcs'));  
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Khorne Norse'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Knights of Khorne'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Specialist'), (SELECT id from team WHERE name = 'Tasty Morsels'));
 
 INSERT INTO team_category(category) VALUES('High Difficulty');
 
@@ -564,6 +569,7 @@ INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FRO
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Alliance of Swiftness'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Clan Eshin Pact'));
 INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Kislev League'));
+INSERT INTO team_category_assignment(category_id, team_id) VALUES((SELECT id FROM team_category WHERE category = 'Low TV Build Available'), (SELECT id from team WHERE name = 'Tasty Morsels'));
 
 
 
