@@ -6,7 +6,7 @@ import {
   useFilterTeams,
 } from "@/hooks/useFilterTeams.hooks";
 import { Team } from "@/models/common";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading } from "@chakra-ui/react";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { useMemo, useState } from "react";
@@ -42,17 +42,20 @@ const Home: NextPage<IHomeProps> = ({ teams }) => {
         <meta name="description" content="A Blood Bowl 2 Mixed Team Builder." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Hero />
-      <Container>
-        <Search
-          filterOptions={filterOptions}
-          setFilterOptions={setFilterOptions}
-          categoryList={categoryList}
-          raceList={raceList}
-          searchOptions={{ shiftUp: true, showFilters: true }}
-        />
-        <TeamList teams={filteredTeams} />
-      </Container>
+      <Box display="flex" flex="1">
+        <Box flex="2" height="100vh" overflowY="auto" p={8}>
+          <Flex gap={8} alignItems="center">
+            <Heading my={4}>Admin</Heading>
+          </Flex>
+          <Box>HI</Box>
+        </Box>
+        <Box
+          flex="1"
+          height="100vh"
+          backgroundColor="purpleLightest"
+          p={8}
+        ></Box>
+      </Box>
     </Box>
   );
 };
