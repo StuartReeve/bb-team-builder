@@ -1,5 +1,5 @@
 import { Team } from "@/models/common";
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState, PropsWithChildren } from "react";
 
 interface ITeamBuilderProviderProps {
 	team: Team;
@@ -27,7 +27,7 @@ export function useTeamBuilder(): ITeamBuilderContext {
 	return useContext(TeamBuilderContext);
 }
 
-export const TeamBuilderProvider: React.FC<ITeamBuilderProviderProps> = ({ children, team }) => {
+export const TeamBuilderProvider: React.FC<PropsWithChildren<ITeamBuilderProviderProps>> = ({ children, team }) => {
 	const [teamCost, setTeamCost] = useState(0);
 	const [teamPlayers, setTeamPlayers] = useState<{ [key: number]: number }>([]);
 	const [rerolls, setRerolls] = useState(0);

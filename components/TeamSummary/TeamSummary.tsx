@@ -97,7 +97,7 @@ Team Cost: ${teamBuilderData.teamCost}K
 			)}
 			<SummaryTotal teamCost={teamBuilderData.teamCost} />
 			<Center my={8}>
-				<Button onClick={shareBuild} isFullWidth>
+				<Button onClick={shareBuild} width="full">
 					Share Team
 				</Button>
 			</Center>
