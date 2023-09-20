@@ -47,7 +47,7 @@ const PickATeamPage: NextPage<IPickATeamProps> = ({ teams }) => {
 
 	const handleCustomTeamAdded = () => {
 		if (customTeam.length > 0) {
-			addTeam(customTeam);
+			customTeam.replaceAll(", ", ",").split(",").forEach(t => addTeam(t));
 			setCustomTeam("");
 		}
 	};
